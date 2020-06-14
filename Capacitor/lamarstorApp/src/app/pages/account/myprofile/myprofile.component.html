@@ -1,0 +1,118 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+	<!-- <ion-buttons slot="start">
+     <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons> -->
+
+    <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" (click)="dismiss()" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Page title -->
+	 <ion-title>{{ 'profile.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding">
+<div class="section_two ion-padding-top">
+    <form class="ion-padding-top"  >
+      <!-- Name -->
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="{{ 'signup.first_name_place' | translate }}" name="first_name" [(ngModel)]="first_name" ></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="person" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="{{ 'signup.last_name_place' | translate }}" name="last_name" [(ngModel)]="last_name" ></ion-input>
+      </ion-item>
+
+      <!-- Email -->
+      <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="mail" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="email" placeholder="{{ 'login.email_place' | translate }}" name="email" [(ngModel)]="email" ></ion-input>
+      </ion-item>
+
+      <!-- Phone Number -->
+      <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="call" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="number" placeholder="{{ 'signup.phone_place' | translate }}" name="mobile_number"  [(ngModel)]="mobile_number" ></ion-input>
+      </ion-item>
+	  
+	   <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="home-outline" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="{{ 'profile.address_place1' | translate }}" name="address" [(ngModel)]="address" ></ion-input>
+      </ion-item>
+	  
+	  <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="home-outline" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="{{ 'profile.address_place2' | translate }}" name="address2" [(ngModel)]="address_2"></ion-input>
+      </ion-item>
+	  
+	  <ion-item class="ion-padding-top">
+        <ion-label>
+		<ion-icon name="map-outline" color="color2"></ion-icon>
+        </ion-label>
+		<ion-input type="text" placeholder="{{ 'profile.city_place' | translate }}" name="city" [(ngModel)]="city" ></ion-input>
+      </ion-item>
+	  
+	  <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="map-outline" color="color2"></ion-icon>
+        </ion-label>
+         <ion-select placeholder="{{ 'profile.state_place' | translate }}"  name="state" [(ngModel)]="state" class="ion-text-left" okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}" required>
+          <ion-select-option *ngFor="let item of state_data" value="{{item.id}}">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+	  
+	  <ion-item class="ion-padding-top">
+        <ion-label>
+         <ion-icon name="map-outline" color="color2"></ion-icon>
+        </ion-label>
+         <ion-select placeholder="{{ 'profile.country_place' | translate }}"  name="country" [(ngModel)]="country" class="ion-text-left" (ngChange)="update_states()" okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}" required>
+          <ion-select-option *ngFor="let item of country_data" value="{{item.id}}">{{item.name}}</ion-select-option>
+         
+        </ion-select>
+      </ion-item>
+	  
+	
+	  
+	  <ion-item class="ion-padding-top">
+        <ion-label>
+      <ion-icon name="map-outline" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text"  name="pincode" [(ngModel)]="pincode" ></ion-input>
+      </ion-item>
+
+
+      <div class="buttons ion-padding-top">
+       <ion-button expand="block" color="color1" (click)="update_details()">
+          <ion-text><strong>{{ 'profile.update_profile' | translate }}</strong></ion-text>
+        </ion-button>
+	  </div>
+    </form>
+  </div>
+</ion-content>

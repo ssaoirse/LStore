@@ -1,0 +1,52 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+	<ion-buttons slot="start">
+     <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Page title -->
+	 <ion-title>{{ 'wallet.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<h2 class="ion-padding"> {{cur_bal}}</h2>
+<ion-content>
+  <div class="ion-padding">
+
+    <!-- Theme classes dark, material, bootstrap -->
+    <ngx-datatable 
+      class="material"
+      [limit]="8" 
+      [rows]="rows" 
+      [rowHeight]="50"       
+      [columnMode]="'force'" 
+      [sortType]="'multi'" 
+      [headerHeight]="50" 
+      [footerHeight]="50"
+	  [scrollbarV]="false" 
+	  [scrollbarH]="false"
+	  >
+	  
+	  <ngx-datatable-column name="{{ 'wallet.amount' | translate }}" prop="Amount">
+        </ngx-datatable-column>
+        <ngx-datatable-column name="{{ 'wallet.description' | translate }}" prop="Description">
+        </ngx-datatable-column>
+     
+         <ngx-datatable-column name="{{ 'wallet.dated' | translate }}" prop="Dated">
+        </ngx-datatable-column> 
+    </ngx-datatable>
+
+  </div>
+</ion-content>
+
+

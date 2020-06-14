@@ -1,0 +1,26 @@
+#category {
+    ion-list {
+        margin-bottom: 0px !important;
+    }
+
+    .item {
+        ion-thumbnail {
+            width: 140px;
+            height: 90px;
+
+            img {
+                width: 140px;
+                height: 90px;
+                border-radius: 5px;
+            }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+
+    .custom_card{
+        margin: 5px;
+    }
+}

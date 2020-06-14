@@ -1,0 +1,57 @@
+#checkout {
+    .selected {
+        border: 3px dotted var(--ion-color-color1);
+        border-radius: 10px;
+
+        ion-icon {
+            color: var(--ion-color-color1);
+        }
+
+        ion-text {
+            color: var(--ion-color-color1);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    }
+    .address{
+        text-align: center;
+        margin-top: 50%;
+    }
+    .paypal_img{
+        height: 60px;
+        width: auto;
+    }
+
+    .border-style {
+        border: 4px solid;
+        width: 60px;
+        border-radius: 15%;
+    }
+
+    #payment {
+        img {
+            width: 60px;
+        }
+
+        .title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding-left: 30px;
+            font-family: serif;
+        }
+    }
+
+    #complete-section {
+        h2 {
+            font-weight: bold;
+        }
+    }
+
+}
+
+ion-footer {
+    ion-toolbar {
+        --background-color: transparent;
+        --ion-color-base: transparent !important;
+    }
+}

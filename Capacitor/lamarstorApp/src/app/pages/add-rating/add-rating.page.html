@@ -1,0 +1,60 @@
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Back to previous page -->
+    <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" (click)="dismiss()" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Title -->
+    <ion-title>
+      {{ 'product.reviews' | translate }}
+
+    </ion-title>
+
+    <!-- Cart Page Button -->
+   
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <div class="section_two ion-padding-top">
+    <form class="ion-padding-top">
+      <!-- Name -->
+      <ion-item>
+        <ion-label position="floating">
+          {{ 'product.review_title' | translate }}
+        </ion-label>
+        <ion-input type="text"  name="title" [(ngModel)]="title" ></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'product.review_text' | translate }}
+        </ion-label>
+        <ion-input type="text"  name="review" [(ngModel)]="review" ></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding-top">
+        <ion-icon name="star"  *ngIf="star[1]" (click)="setCounter(1)"></ion-icon>
+        <ion-icon name="star"  *ngIf="star[2]" (click)="setCounter(2)"></ion-icon>
+        <ion-icon name="star"  *ngIf="star[3]" (click)="setCounter(3)"></ion-icon>
+        <ion-icon name="star"  *ngIf="star[4]" (click)="setCounter(4)"></ion-icon>
+        <ion-icon name="star"  *ngIf="star[5]" (click)="setCounter(5)"></ion-icon>
+
+        <ion-icon name="star-outline" *ngIf="!star[1]" (click)="setCounter(1)"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="!star[2]" (click)="setCounter(2)"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="!star[3]" (click)="setCounter(3)"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="!star[4]" (click)="setCounter(4)"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="!star[5]" (click)="setCounter(5)"></ion-icon>
+      </ion-item>
+     
+      <div class="buttons ion-padding-top">
+       <ion-button expand="block" color="color1" (click)="add_review()">
+          <ion-text><strong>{{ 'product.add_review' | translate }}</strong></ion-text>
+        </ion-button>
+	  </div>
+    </form>
+  </div>
+</ion-content>

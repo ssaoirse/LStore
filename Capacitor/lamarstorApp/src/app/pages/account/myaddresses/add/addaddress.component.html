@@ -1,0 +1,117 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Back to previous page -->
+    <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" (click)="closeModal()" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <!-- Page title -->
+    <ion-title>{{ 'add_address.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="section_two ion-padding-top">
+    <form class="ion-padding-top">
+      <!-- Name -->
+      <ion-item>
+        <ion-label position="floating">
+          {{ 'add_address.f_name' | translate }}
+        </ion-label>
+        <ion-input type="text" name="first_name" [(ngModel)]="first_name"></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.l_name' | translate }}
+        </ion-label>
+        <ion-input type="text" name="last_name" [(ngModel)]="last_name"></ion-input>
+      </ion-item>
+      <!-- Phone Number -->
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.phone' | translate }}
+        </ion-label>
+        <ion-input type="number" name="mobile_number" [(ngModel)]="mobile_number"></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.address' | translate }}
+        </ion-label>
+        <ion-input type="text" name="address" [(ngModel)]="address"></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.address2' | translate }}
+        </ion-label>
+        <ion-input type="text" name="address2" [(ngModel)]="address_2" value=""></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.country' | translate }}
+        </ion-label>
+        <ion-select name="country" [(ngModel)]="country" class="ion-text-left" (ionChange)="update_states()" okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}" required>
+          <ion-select-option *ngFor="let item of country_data" value="{{item.id}}">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.state' | translate }}
+        </ion-label>
+        <ion-select name="state" [(ngModel)]="state" class="ion-text-left" okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}" required>
+          <ion-select-option *ngFor="let item of state_data" value="{{item.id}}">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.city' | translate }}
+        </ion-label>
+        <ion-input type="text" name="city" [(ngModel)]="city"></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.pincode' | translate }}
+        </ion-label>
+        <ion-input type="text" name="pincode" [(ngModel)]="pincode"></ion-input>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.address_type' | translate }}
+        </ion-label>
+
+        <ion-select name="type" [(ngModel)]="type" class="ion-text-left" okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}" required>
+          <ion-select-option value="0" selected>{{ 'add_address.residentail' | translate }}</ion-select-option>
+          <ion-select-option value="1">{{ 'add_address.bussiness' | translate }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="ion-padding-top">
+        <ion-label position="floating">
+          {{ 'add_address.deli_instruction' | translate }}
+        </ion-label>
+
+        <ion-input type="text" name="instruction" [(ngModel)]="instruction" value=""></ion-input>
+      </ion-item>
+
+
+      <div class="buttons ion-padding-top">
+        <ion-button expand="block" color="color1" (click)="update_details()">
+          <ion-text><strong>{{ 'add_address.addaddress' | translate }}</strong></ion-text>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

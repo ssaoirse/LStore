@@ -1,0 +1,7 @@
+{
+  "name": "lamarstorApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

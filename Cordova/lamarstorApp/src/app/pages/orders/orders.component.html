@@ -1,0 +1,68 @@
+<!--
+  - My Orders Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Headder -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side menu option -->
+    <ion-buttons slot="start">
+      <ion-menu-toggle menu="pages">
+        <ion-button color="white">
+          <ion-icon name="menu" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    <!-- Page Title -->
+    <ion-title>My Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="orders" fullscreen>
+
+  <!-- Orders Options -->
+  <!-- Options are - Delivered, Processing, Cancelled  -->
+  <div class="ion-padding ion-text-center">
+    <ion-chip *ngFor="let item of options; let i = index" [ngClass]="{ionChip: item.isSelected}"
+      (click)="changeOption(item, i)">
+      <ion-label>{{item.title}}</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- List of orders -->
+  <ion-card *ngFor="let item of orders">
+    <ion-card-header>
+      <ion-row>
+
+        <!-- Order Id -->
+        <ion-col>
+          <ion-card-title>Order {{item.orderId}}</ion-card-title>
+        </ion-col>
+
+        <!-- Order Date -->
+        <ion-col class="col-right">
+          <ion-text>{{item.date}}</ion-text>
+        </ion-col>
+      </ion-row>
+
+      <!-- Order Tracking Number -->
+      <ion-row>
+        <ion-col>Tracking Number: {{item.trackingNumber}}</ion-col>
+      </ion-row>
+
+      <!-- Order Quantity & Price -->
+      <ion-row>
+        <ion-col>Quantity: {{item.quantity}}</ion-col>
+        <ion-col>Total Price: ${{item.totalPrice}}</ion-col>
+      </ion-row>
+
+      <ion-button color="color1" size="small">Details</ion-button>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

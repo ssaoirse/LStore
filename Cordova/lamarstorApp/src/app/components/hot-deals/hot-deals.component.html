@@ -1,0 +1,38 @@
+<div id="hot-deals">
+  <ion-item-divider color="white" class="ion-padding-top">
+    <ion-label color="dark" class="text-bold">
+      {{ 'home.best_seller' | translate }}</ion-label>
+    <ion-button class="ion-margin-end" size="small" slot="end" color="color1" fill="clear" (click)="goToHome()">
+      {{ 'home.see_all' | translate }}</ion-button>
+  </ion-item-divider>
+<div dir="ltr">
+  <ion-slides [options]="slideOpts" class="ion-padding-top" >
+    <ion-slide  *ngFor="let item of (deals | async)">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="ion-no-margin" >
+              <div class="card-img" [style.background-image]="'url(' + item.default_image + ')'"></div>
+
+              <!-- <ion-fab vertical="top" horizontal="end">
+                <ion-fab-button>
+                  
+                  <ion-icon color="color1" name="heart-outline" *ngIf="item.isWishlist==0"></ion-icon>
+                  <ion-icon color="color1" name="heart" *ngIf="item.isWishlist!=0"></ion-icon>
+                </ion-fab-button>
+              </ion-fab> -->
+
+              <ion-card-header>
+                <ion-card-title class="ion-padding-bottom slideTitle">{{item.name | slice:0:30}}</ion-card-title>
+                <!-- <ion-card-subtitle class="ion-text-wrap">{{item.description | slice:0:50}}</ion-card-subtitle> -->
+                <ion-button color="color1" size="small" (click)="goToProductDetails(item)">{{ 'home.shop_now' | translate }}</ion-button>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</div>
+ 
+</div>

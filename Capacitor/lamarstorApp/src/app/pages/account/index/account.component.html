@@ -1,0 +1,159 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+    <ion-buttons slot="start">
+      <ion-menu-toggle menu="pages">
+        <ion-button color="white">
+          <ion-icon name="menu" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    <!-- Page title -->
+    <ion-title>{{ 'account.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="account" class="ion-padding">
+
+  <!-- User/Profile Infos -->
+  <ion-item lines="none">
+    <!-- Avatar/Image of User -->
+    <ion-avatar slot="end" class="logo_img">
+      <img src="assets/images/icon.png">
+    </ion-avatar>
+
+    <!-- Name of User -->
+    <ion-label>
+      <h2>{{name}}</h2>
+      <p>{{email}}</p>
+    </ion-label>
+  </ion-item>
+
+  <!-- Some Menu Options -->
+ 
+<ion-card>
+  <ion-grid>
+    <ion-row class="ion-text-center">
+      <ion-col (click)="goToWishList()">
+        <ion-icon name="heart" style="zoom:1.5;" ></ion-icon><br />
+        <ion-text>{{ 'menu.wishlist1' | translate }}</ion-text>
+      </ion-col>
+      <ion-col (click)="goToOrder()">
+        <ion-icon name="checkbox-outline" style="zoom:1.5;"></ion-icon><br />
+        {{ 'menu.orders1' | translate }}
+      </ion-col>
+      <ion-col (click)="openCart()">
+        <ion-icon name="cart" style="zoom:1.5;"></ion-icon><br />
+        {{ 'cart.title' | translate }}
+      </ion-col>
+      <ion-col (click)="goTobestSeller()">
+        <ion-icon name="gift" style="zoom:1.5;"></ion-icon><br />
+        {{ 'menu.best_seller' | translate }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+
+
+  <!-- Some Orders Option -->
+  <ion-card>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>{{ 'account.setting' | translate }}</ion-label>
+      </ion-item-divider>
+	  <ion-item expand="block" routerLink="/mywallet" routerDirection="forward">
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+         <ion-label>{{ 'account.my_wallet' | translate }}</ion-label>
+      </ion-item>
+	  
+	  
+	   <ion-item expand="block" routerLink="/myaddresses" routerDirection="forward">
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+         <ion-label>{{ 'account.shipping_address' | translate }}</ion-label>
+      </ion-item>
+	  
+		 <ion-item expand="block" (click)="openmyprofile()" routerDirection="forward">
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+         <ion-label>{{ 'account.profile' | translate }}</ion-label>
+      </ion-item>
+	  
+      <ion-item expand="block" routerLink="/changepassword" routerDirection="forward">
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+         <ion-label>{{ 'account.password' | translate }}</ion-label>
+      </ion-item>
+      <ion-item expand="block"  >
+        <ion-icon name="arrow-forward" size="small" slot="end" (click)="signout()"></ion-icon>
+         <ion-label>{{ 'menu.signout' | translate }}</ion-label>
+      </ion-item>
+	  
+     <!-- <ion-item lines="none">
+        <ion-label>Change language</ion-label>
+         <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+        <ion-select value="" okText="Okay" cancelText="Dismiss" >
+          <ion-select-option *ngFor="let item of languageDetails" value="{{item.id}}" >{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+       <ion-item lines="none">
+        <ion-label>Shipped</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>To be reviewed</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>In dispute</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item> -->
+    </ion-item-group>
+  </ion-card>
+
+  <!-- <ion-card>
+    <ion-item-group>
+      <ion-item lines="none">
+        <ion-label>Wallet</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Shipping Address</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Redeem invite code</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Questions & Answers</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
+
+  <ion-card>
+    <ion-item-group>
+      <ion-item lines="none">
+        <ion-label>Settings</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>App Suggestion</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Help Center</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+  </ion-card> -->
+</ion-content>

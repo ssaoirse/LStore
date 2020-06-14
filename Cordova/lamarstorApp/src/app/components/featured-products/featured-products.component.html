@@ -1,0 +1,41 @@
+<div id="featured-products">
+  <ion-item-divider color="white" class="ion-padding-top">
+    <ion-label color="dark" class="text-bold">{{'home.featured_products' | translate}}</ion-label>
+    <ion-button class="ion-margin-end" size="small" slot="end" color="color1" fill="clear" routerLink="/tabs/products"
+      routerDirection="root">{{'home.see_all' | translate}}</ion-button>
+  </ion-item-divider>
+<div dir="ltr">
+  <ion-slides [options]="slideOpts" class="ion-padding-top" >
+    <ion-slide *ngFor="let item of products">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="ion-no-margin">
+              <div class="card-img" [style.background-image]="'url(' + item.default_image + ')'" 
+              (click)="goToProductDetails(item)"></div>
+
+              <!-- <ion-fab vertical="top" horizontal="end">
+                <ion-fab-button>
+                  <ion-icon color="color1" name="heart-outline" *ngIf="item.isWishlist==0"></ion-icon>
+                  <ion-icon color="color1" name="heart" *ngIf="item.isWishlist!=0"></ion-icon>
+                </ion-fab-button>
+              </ion-fab> -->
+
+              <ion-card-content (click)="goToProductDetails(item)">
+                <ion-row class="product-row">
+                  <ion-text color="color1">{{item.currency_symble}}{{item.discount_price}} &nbsp;</ion-text>
+                  <span class="previous-price"> {{item.currency_symble}}{{item.original_price}}</span>
+                </ion-row>
+                <ion-row class="product-name">
+                  <h4>{{item.name | slice:0:20}}</h4>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</div>
+  
+</div>

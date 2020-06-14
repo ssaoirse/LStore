@@ -1,0 +1,55 @@
+<!--
+  - Notification Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+    <ion-buttons slot="start">
+      <ion-menu-toggle menu="pages">
+        <ion-button color="white">
+          <ion-icon name="menu" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    <!-- Page Title -->
+    <ion-title>Notifications</ion-title>
+
+    <!-- Cart Button Option -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="notifications">
+  <div *ngFor="let item of notifications">
+    <ion-item [class.unread]="!item.status" lines="none">
+
+      <!-- Image of user -->
+      <ion-avatar slot="start">
+        <img src="assets/images/notification-flat.png">
+      </ion-avatar>
+
+      <!-- Contents of message -->
+      <ion-label class="ion-text-wrap">
+        <ion-text color="dark">
+          <h2> {{ item.title }}</h2>
+        </ion-text>
+        <p>{{item.message}}</p>
+      </ion-label>
+
+      <!-- Date -->
+      <ion-text slot="end" color="medium">{{item.date}}</ion-text>
+    </ion-item>
+  </div>
+</ion-content>

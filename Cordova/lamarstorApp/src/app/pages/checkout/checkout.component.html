@@ -1,0 +1,248 @@
+<!--
+  - Checkout Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Back to previous page option button -->
+    <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" (click)="dismiss()" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Page title -->
+    <ion-title>{{ 'checkout.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="checkout">
+
+  <!-- Steps of Checkout, steps are - (Billing, Payment, Confirm) -->
+  <ion-grid class="ion-padding">
+    <ion-row class="ion-text-center">
+      <ion-col *ngFor="let item of steps" [ngClass]="{selected: item.isSelected}">
+        <ion-icon name="radio-button-on" style="zoom:1.5;" [hidden]="!item.isSelected"></ion-icon>
+        <ion-icon name="radio-button-off" style="zoom:1.5;" [hidden]="item.isSelected"></ion-icon>
+        <br />
+        <ion-text>{{ item.step | translate }}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Content of Checkout Steps -->
+
+  <!-- Billing Section -->
+  <div id="billing" *ngIf="steps[0].isSelected">
+
+    <!-- <ion-grid *ngFor="let item of product_reviews" >
+   
+      <ion-row class="ion-padding">
+        <ion-col size=6>
+          {{item.name}}
+        </ion-col>
+        <ion-col size=6>
+          {{item.created_date}}
+        </ion-col>
+      </ion-row>       
+     
+    </ion-grid> -->
+    <form class="ion-padding">
+
+       <!--get it by-->
+    <ion-list>
+      <ion-radio-group (ionChange)="selectType($event)" value="0">
+        <ion-list-header>
+          <ion-label>{{ 'checkout.get_it_by' | translate }}</ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>{{ 'checkout.free_ground_shipping' | translate }}</ion-label>
+          <ion-radio slot="start" value="0"></ion-radio>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>{{ 'checkout.pick_from_store' | translate }}</ion-label>
+          <ion-radio slot="start" value="1"></ion-radio>
+        </ion-item>
+          
+      </ion-radio-group>
+    </ion-list>
+    <div *ngIf="is_pickup_from_store==0">
+      <ion-item>
+        <ion-button fill="outline" (click)="addNewAddress()" >{{ 'checkout.add_new' | translate }}</ion-button>
+      </ion-item>
+      <div class="address" *ngIf="chkAddress"><h2>{{ 'address.no_address' | translate }}</h2></div>
+  
+      <ion-card *ngFor="let item of rows">
+        <ion-card-header>
+          <ion-card-subtitle>{{item.shipping_mobile_number}}</ion-card-subtitle>
+          <ion-card-title>{{item.shipping_frist_name}} {{item.shipping_last_name}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{item.shipping_address}}, {{item.shipping_address_two}}, {{item.shipping_city}} ,{{item.shipping_state_name}}, {{item.shipping_country_name}}, {{item.shipping_zip}}
+          <br>
+          {{item.sp_delivery_instruction}}
+        </ion-card-content>
+        <ion-item>
+          <ion-button fill="outline" (click)="selectAddress(item.id)">{{ 'checkout.select' | translate }}</ion-button>
+        </ion-item>
+      </ion-card>
+    </div>
+
+
+
+    <div *ngIf="is_pickup_from_store==1">
+      <ion-item>
+        <ion-button fill="outline" (click)="addPersonalAddress()" >{{ 'checkout.add_personal_address' | translate }}</ion-button>
+      </ion-item>
+      <div class="address" *ngIf="chkPersonalAddress"><h2>{{ 'address.no_address' | translate }}</h2></div>
+  
+      <ion-card *ngFor="let item of rows">
+        <ion-card-header>
+          <ion-card-subtitle>{{personalDetails.mobile_number}}</ion-card-subtitle>
+          <ion-card-title>{{personalDetails.frist_name}} {{personalDetails.last_name}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{personalDetails.address}}, {{personalDetails.address_two}}, {{personalDetails.city}} ,{{personalDetails.state}}, {{personalDetails.country}}, {{personalDetails.zip}}
+          
+        </ion-card-content>
+        <ion-item>
+          <ion-button fill="outline" (click)="selectPersonalAddress(item.id)">{{ 'checkout.select' | translate }}</ion-button>
+        </ion-item>
+      </ion-card>
+    </div>
+
+
+
+    </form>
+  </div>
+  <!-- End billing section -->
+
+  <!-- Payment Section -->
+  <div id="payment" *ngIf="steps[1].isSelected">
+   
+   
+
+ 
+    <p class="title">{{ 'checkout.select_payment' | translate }}</p>
+
+    <!-- Payment Card Options -->
+    <!-- <ion-radio-group>
+      <ion-row>
+        <ion-col *ngFor="let item of cards">
+          <ion-item lines="none">
+            <ion-radio color="color1" mode="ios" [value]="item"></ion-radio>
+            <img [src]="item">
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group> -->
+
+    <!-- Card Information Form -->
+    <form class="ion-padding">
+
+      <ion-card>
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>{{ 'checkout.offline' | translate }}</ion-label>
+          </ion-item-divider>
+          <ion-item expand="block" *ngIf="paymentMethod.admin_bank_account">
+            <ion-icon name="arrow-forward" size="small" slot="end"  (click)="bankTransfer()"></ion-icon>
+            <ion-label>{{ 'checkout.bank_transfer' | translate }}</ion-label>
+            <ion-thumbnail slot="">
+              <ion-img src="assets/images/bank.png"></ion-img>
+            </ion-thumbnail>
+            
+          </ion-item>
+          <ion-grid *ngIf="paymentMethod.admin_bank_account">
+            <ion-item-divider>
+              <ion-label>{{ 'checkout.transfer_account' | translate }}</ion-label>
+            </ion-item-divider>
+            <ion-row>
+              <ion-col size="6">{{ 'checkout.bank_name' | translate }}:</ion-col>
+              <ion-col size="6">{{bankDetails.bank_name}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">{{ 'checkout.account_no' | translate }}:</ion-col>
+              <ion-col size="6">{{bankDetails.bank_account_number}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">{{ 'checkout.ifsc_code' | translate }}:</ion-col>
+              <ion-col size="6">{{bankDetails.bank_ifsc_code}}</ion-col>
+            </ion-row>
+            <ion-item-divider></ion-item-divider>
+          </ion-grid>
+          
+          <ion-item expand="block" *ngIf="paymentMethod.cod">
+            <ion-icon name="arrow-forward" size="small" slot="end" (click)="cod()"></ion-icon>
+            <ion-label>{{ 'checkout.cod' | translate }}</ion-label>
+            <ion-thumbnail slot="">
+              <ion-img src="assets/images/cod.png"></ion-img>
+            </ion-thumbnail>
+          </ion-item>
+        </ion-item-group>
+      </ion-card>
+
+      <ion-card *ngIf="paymentMethod.wallet_account">
+        <ion-item expand="block">
+          <ion-icon name="arrow-forward" size="small" slot="end" (click)="wallet()" ></ion-icon>
+          <ion-img  class="paypal_img" src="assets/images/wallet.png"></ion-img>
+        </ion-item>
+      </ion-card>
+
+      <ion-card *ngIf="paymentMethod.paypal">
+        <ion-item-group>
+          <ion-item expand="block">
+            <ion-icon name="arrow-forward" size="small" slot="end" (click)="payWithPaypal()"></ion-icon>
+            <ion-img  class="paypal_img" src="assets/images/paypal.png"></ion-img>
+          </ion-item>
+        </ion-item-group>
+      </ion-card>
+      
+    </form>
+  </div>
+
+  <!-- Payment Complete Section -->
+  <!-- Confirm Screen -->
+  <div id="complete-section" *ngIf="steps[2].isSelected" style="height: 70%">
+    <ion-grid class="ion-padding" style="height: 100%">
+      <ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100%; flex-direction: column">
+        <div class="ion-text-center ion-padding">
+          <ion-icon name="md-checkmark-circle-outline" style="zoom:10.0;" color="medium"></ion-icon>
+          <h2>{{ 'checkout.order_success' | translate }}</h2>
+          <p>{{ 'checkout.success_msg' | translate }}</p>
+          <h1>{{orderNumber}}</h1>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<!-- Footer -->
+<ion-footer no-border *ngIf="steps[2].isSelected">
+  <ion-toolbar class="ion-padding" transparent>
+
+    <!-- Go To Next Section Button Option  -->
+    <!-- This button only visible Step 1 & 2 -->
+    <!-- <ion-button *ngIf="!steps[2].isSelected" color="color1" expand="block" (click)="next()">Next
+    </ion-button> -->
+
+    <!-- Go To Order Page Button Option  -->
+    <!-- This Option will be visible on Step 3 -->
+    <ion-button color="color1" fill="outline" expand="block" (click)="gotoOrderPage()">{{ 'checkout.my_order' | translate }}
+    </ion-button>
+
+    <!-- Go To Products Page Button Option  -->
+    <!-- This Option will be visible on Step 3 -->
+    <ion-button color="color1" expand="block" (click)="gotoProductsPage()">{{ 'checkout.shopping' | translate }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,42 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+	<ion-buttons slot="start">
+     <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Page title -->
+	 <ion-title>{{ 'order.order_tracking' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding">
+
+<ion-grid>
+	<ion-row>
+        <ion-col><h3><u>{{ 'order.order_tracking' | translate }}</u></h3></ion-col>
+    </ion-row>
+   <ion-row>
+    <ion-col size="6"><b>{{ 'order.order_id' | translate }} :</b> </ion-col><ion-col size="6"> {{order_number}}</ion-col>
+    <ion-col size="6"><b>{{ 'order.transaction_id' | translate }} :</b> </ion-col><ion-col size="6"> {{txn_no}}</ion-col>
+    <ion-col size="6"><b>{{ 'order.order_status' | translate }} :</b></ion-col><ion-col size="6">  {{order_status}}</ion-col>
+	<ion-col size="6"><b>{{ 'order.payment_status' | translate }} :</b></ion-col><ion-col size="6">  {{payment_status}}</ion-col>
+	<ion-col size="6"><b>{{ 'order.tracking_id' | translate }} :</b></ion-col><ion-col size="6">  {{tracking_number}}</ion-col>
+	<ion-col size="6"><b>{{ 'order.shipping_carier' | translate }} :</b></ion-col><ion-col size="6">  {{shipping_carrier}}</ion-col>
+    <ion-col size="6"><b>{{ 'order.payment_method' | translate }} :</b> </ion-col><ion-col size="6"> {{payment_method}}  </ion-col>
+	<ion-col size="6"><b>{{ 'order.mobile' | translate }} :</b> </ion-col><ion-col size="6">{{mobile_number}}</ion-col>
+    </ion-row>
+	 </ion-grid>
+	  
+	 
+
+</ion-content>

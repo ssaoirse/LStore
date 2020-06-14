@@ -1,0 +1,26 @@
+ion-menu {
+    
+    ion-toolbar {
+        --background: var(--ion-color-color1);
+        height: 150px;
+
+        ion-row {
+         
+
+            img {
+                margin: 0 auto;
+                display: block;
+                width: 150px;
+            }
+
+            .text-content {
+                display: flex;
+                align-items: center;
+                font-size: 1.4rem;
+                font-weight: bold;
+                color: white;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,28 @@
+#wishlist {
+    .card-img {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 150px;
+    }
+
+    .product-name {
+        font-size: 1.2rem;
+        color: rgba(8, 8, 8, 0.58);
+    }
+
+    .previous-price {
+        text-decoration: line-through;
+        font-size: 0.8rem;
+    }
+    .noWishlist{
+        text-align: center;
+        margin-top: 50%;
+    }
+
+    ion-fab-button {
+        --background: transparent;
+        --background-focused: transparent;
+        --background-activated: transparent;
+    }
+}

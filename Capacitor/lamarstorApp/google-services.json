@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "364777597717",
+    "firebase_url": "https://lamarstore-1583297076671.firebaseio.com",
+    "project_id": "lamarstore-1583297076671",
+    "storage_bucket": "lamarstore-1583297076671.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364777597717:android:eb35e872c7a55601e5571c",
+        "android_client_info": {
+          "package_name": "com.lamarstor.shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364777597717-gm2lfj9pmg43mfkred3lfq9e5j65635u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtKGQGzCZZXbrUm4uHhSPOtkNt3tGGZ2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364777597717-gm2lfj9pmg43mfkred3lfq9e5j65635u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

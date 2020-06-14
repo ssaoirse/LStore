@@ -1,0 +1,93 @@
+<!--
+  - Category Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+     <!-- Back to previous page -->
+     <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" (click)="beck_to_previous()"  icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Page tile -->
+    <ion-title>{{ 'menu.categories' | translate }}</ion-title>
+
+    <!-- Cart Button Option -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Main Contents -->
+<ion-content id="category" class="ion-padding">
+
+  <!-- Category View Options -->
+  <div class="ion-text-end">
+
+    <!-- One Column Option -->
+    <ion-button fill="clear" [color]="oneColumn ? 'color1' : 'color2'" class="ion-no-padding" (click)="showOneColumn()">
+      <ion-icon slot="icon-only" name="square"></ion-icon>
+    </ion-button>
+
+    <!-- Grid View Option -->
+    <ion-button fill="clear" [color]="grid ? 'color1' : 'color2'" class="ion-no-padding" (click)="showGrid()">
+      <ion-icon slot="icon-only" name="grid"></ion-icon>
+    </ion-button>
+
+    <!-- List view option -->
+    <ion-button fill="clear" [color]="list ? 'color1' : 'color2'" class="ion-no-padding" (click)="showList()">
+      <ion-icon slot="icon-only" name="list"></ion-icon>
+    </ion-button>
+  </div>
+  <!-- End Category View Options -->
+
+  <!-- Grid View Contents -->
+  <ion-grid class="ion-no-padding">
+    <ion-row *ngIf="grid">
+      <ion-col size="6" *ngFor="let item of (categories| async)">
+        <!-- <ion-card class="ion-no-padding ion-no-margin" routerLink="/tabs/products" routerDirection="root"> -->
+          <ion-card class="ion-no-padding ion-no-margin custom_card" (click)="goToProduct(item.id,item.subcategory)">
+          <img [src]="item.cat_image" >
+          <ion-card-header>
+            <ion-card-subtitle>{{item.category_name}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- One COlumn View Contents -->
+    <ion-row *ngIf="oneColumn">
+      <ion-col size="12" *ngFor="let item of (categories| async)">
+        <!-- <ion-card class="ion-no-padding ion-no-margin" routerLink="/tabs/products" routerDirection="root"> -->
+          <ion-card class="ion-no-padding ion-no-margin" (click)="goToProduct(item.id,item.subcategory)">
+          <img [src]="item.cat_image" >
+          <ion-card-header>
+            <ion-card-subtitle>{{item.category_name}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- List View Contents -->
+  <ion-list lines="none" *ngIf="list">
+    <ion-item class="ion-padding-bottom" *ngFor="let item of (categories| async)" (click)="goToProduct(item.id,item.subcategory)">
+      <ion-thumbnail slot="start">
+        <img style="vertical-align: middle;" [src]="item.cat_image">
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2> {{ item.category_name }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

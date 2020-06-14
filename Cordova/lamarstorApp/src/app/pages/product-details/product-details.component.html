@@ -1,0 +1,171 @@
+<!--
+  - Product Details Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Back to previous page -->
+    <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" (click)="dismiss()" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Title -->
+    <ion-title>
+      {{ 'product.product_details' | translate }}
+
+    </ion-title>
+
+    <!-- Cart Page Button -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- Main Contents of Page -->
+<ion-content id="product-details" fullscreen>
+
+  <!-- Slider of Product Images -->
+  <!-- <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let item of images">
+      <img [src]="item" />
+
+     
+      <ion-fab vertical="top" horizontal="end">
+        <ion-fab-button>
+          <ion-icon color="color1" name="heart-outline" *ngIf="!isWishlist"></ion-icon>
+          <ion-icon color="color1" name="heart" *ngIf="isWishlist"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-slide>
+  </ion-slides> -->
+  <div dir="ltr">
+    <ion-slides pager="true" [options]="slideOpts" class="slider_position" >
+      <ion-slide *ngFor="let item of product_images.records">
+        <img src="{{baseUrl+'/uploads/'+item.photo}}" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+  <ion-fab vertical="top" horizontal="end" class="hert_icon">
+    <ion-fab-button>
+      <ion-icon color="color1" name="heart-outline" *ngIf="isWishlist==0"  (click)="changeWishlistStatus(1)"></ion-icon>
+      <ion-icon color="color1" name="heart" *ngIf="isWishlist!=0"  ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Product Price -->
+  <ion-row class="ion-padding">
+    <ion-text color="color1" class="price">{{currency_symble}}{{discount_price}} &nbsp;</ion-text>
+    <span class="previous-price"> {{currency_symble}}{{original_price}}</span>
+  </ion-row>
+
+  <!-- Product Name -->
+  <ion-row class="ion-padding-start product-name">
+    <ion-text>{{name}}</ion-text>
+  </ion-row>
+
+  <!-- Product Description -->
+  <ion-row class="ion-padding">
+    <ion-text color="medium" [innerHTML]="description"></ion-text>
+  </ion-row>
+
+  <!-- Selct Color -->
+  <ion-row class="ion-padding-start select-heading">
+    <ion-text>{{ 'product.select_color' | translate }}</ion-text>
+  </ion-row>
+
+  <!-- Product Colors -->
+  <!-- <ion-radio-group >
+    <ion-row class="ion-padding-start" >
+      <ion-col size="3" *ngFor="let item of product_color" (click)="sizeChange(item)">
+        <ion-item class="border-style" lines="none" [style.border-color]="item">
+          <ion-radio color="color1" mode="ios" [value]="item.color_id" ></ion-radio>
+        </ion-item>
+      </ion-col>
+      
+    </ion-row>
+  </ion-radio-group> -->
+  <ion-row  class="ion-padding-start" >
+    <ion-select  okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}" [(ngModel)]="color" (ionChange)="sizeChange($event)">
+      <ion-select-option *ngFor="let item of product_color" [value]="item.color_id" >{{item.color_name}}</ion-select-option>     
+    </ion-select>
+  </ion-row>
+  <!-- Select Size -->
+  <ion-row *ngIf="size"  class="ion-padding-start select-heading">
+    <ion-text>{{ 'product.select_size' | translate }}</ion-text>
+  </ion-row>
+
+   <!-- Product Sizes -->
+   <!-- <ion-radio-group>
+    <ion-row class="ion-padding-start">
+      <ion-col size="6" *ngFor="let item of customSize"  (click)="selectColor(item)">
+        <ion-item lines="none">
+          <ion-label class="size-label">{{item.size_name}}</ion-label>
+          <ion-radio color="color1" mode="ios" [value]="item.size_id"></ion-radio>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-radio-group> -->
+  <ion-row  class="ion-padding-start" >
+  <ion-select *ngIf="size"  okText="Okay" cancelText="Dismiss" [(ngModel)]="size" (ionChange)="selectColor($event)" okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}">
+    <ion-select-option *ngFor="let item of product_size" [value]="item.size_id">{{item.size_name}}</ion-select-option>     
+  </ion-select>
+</ion-row>
+  <ion-item-divider color="white" class="ion-padding-top">
+    
+    <ion-button clear="color1" class="add-to-cart" (click)="openAddReview()">{{ 'product.reviews' | translate }} + </ion-button>
+  </ion-item-divider>
+  <ion-grid *ngFor="let item of product_reviews" >
+   
+    <ion-row class="ion-padding">
+      <ion-col size=6>
+        {{item.name}}
+      </ion-col>
+      <ion-col size=6>
+        {{item.created_date}}
+      </ion-col>
+    </ion-row>
+      <ion-row class="ion-padding">
+
+        <ion-icon name="star" *ngIf="item.rating >=1" ></ion-icon>
+        <ion-icon name="star" *ngIf="item.rating >=2"></ion-icon>
+        <ion-icon name="star" *ngIf="item.rating >=3"></ion-icon>
+        <ion-icon name="star" *ngIf="item.rating >=4"></ion-icon>
+        <ion-icon name="star" *ngIf="item.rating >=5"></ion-icon>
+
+        <ion-icon name="star-outline" *ngIf="item.rating <1" ></ion-icon>
+        <ion-icon name="star-outline" *ngIf="item.rating <2"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="item.rating <3"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="item.rating <4"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="item.rating <5"></ion-icon>
+      </ion-row>
+      <ion-row class="ion-padding ">
+        <ion-text color="medium" [innerHTML]="item.review"></ion-text>
+      </ion-row>
+     
+   
+  </ion-grid>
+
+
+</ion-content>
+
+
+<!-- Footer -->
+<ion-footer no-border>
+  <ion-toolbar class="ion-padding" transparent>
+    <!-- Add To Cart Button -->
+    <ion-button class="add-to-cart" color="color1" expand="block" (click)="addToCart()">{{ 'product.add_to_cart' | translate }}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

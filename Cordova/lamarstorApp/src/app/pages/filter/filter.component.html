@@ -1,0 +1,123 @@
+<!--
+  - Filter Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+    <ion-toolbar color="color1">
+
+        <!-- Page Title -->
+        <ion-title>{{ 'filter.filter' | translate }}</ion-title>
+
+        <!-- Close Button of Filter page -->
+        <ion-buttons slot="end">
+            <ion-back-button color="white" default-href="" (click)="dismiss()" text="" icon="close">
+            </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="filter" fullscreen>
+    <ion-list lines="none">
+
+        <!-- Price Section -->
+        <!-- <p class="title">Price</p>
+
+        <ion-item>
+            <ion-range pin="true" [(ngModel)]="priceRange" dual-knobs pin color="dark">
+            </ion-range>
+        </ion-item> -->
+
+        <!-- Colors Section -->
+        <!-- <p class="title">Colors</p> -->
+
+        <!-- <ion-radio-group>
+            <ion-row class="ion-padding-start">
+                <ion-col size="3" *ngFor="let item of colors">
+                    <ion-item class="border-style" lines="none" [style.border-color]="item">
+                        <ion-radio color="color1" mode="ios" [value]="item"></ion-radio>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-radio-group> -->
+
+        <!-- Size Section -->
+        <!-- <p class="title">Sizes</p>
+
+        <ion-radio-group>
+            <ion-row class="ion-padding-start">
+                <ion-col size="3" *ngFor="let item of sizes">
+                    <ion-item lines="none">
+                        <ion-label class="size-label">{{item}}</ion-label>
+                        <ion-radio color="color1" mode="ios" [value]="item"></ion-radio>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-radio-group> -->
+
+        <!-- Brand Section -->
+        
+        <p class="title">{{ 'filter.brands' | translate }}</p>
+
+        <ion-radio-group allow-empty-selection (ionChange)="selectBrand($event)">
+            <ion-item *ngFor="let item of brandLIst">
+                <ion-label>{{item.brand_name}}</ion-label>
+                <ion-radio slot="start" color="color1" mode="ios" [value]="item.id"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+
+
+        
+        <p class="title">{{ 'filter.category' | translate }}</p>
+
+        <ion-radio-group allow-empty-selection (ionChange)="selectCategory($event)">
+            <ion-item *ngFor="let item of categoryList">
+                <ion-label>{{item.category_name}}</ion-label>
+                <ion-radio slot="start" color="color1" mode="ios" [value]="item.id"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+        
+        <p class="title">{{ 'filter.filter' | translate }}</p>
+
+        <ion-radio-group allow-empty-selection (ionChange)="selectFilter($event)">
+            <ion-item >
+                <ion-label>{{ 'filter.new' | translate }}</ion-label>
+                <ion-radio slot="start" color="color1" mode="ios" value="new_popular"></ion-radio>
+            </ion-item>
+            <ion-item >
+                <ion-label>{{ 'filter.low_to_high' | translate }}</ion-label>
+                <ion-radio slot="start" color="color1" mode="ios" value="low_high"></ion-radio>
+            </ion-item>
+            <ion-item >
+                <ion-label>{{ 'filter.high_to_low' | translate }}</ion-label>
+                <ion-radio slot="start" color="color1" mode="ios" value="high_low"></ion-radio>
+            </ion-item>
+            <ion-item >
+                <ion-label>{{ 'filter.review' | translate }}</ion-label>
+                <ion-radio slot="start" color="color1" mode="ios" value="reviews"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+</ion-content>
+
+
+<!-- Footer -->
+<ion-footer no-border>
+    <ion-toolbar class="ion-padding" transparent>
+        <ion-row>
+            <!-- Cancel Button -->
+            <ion-col>
+                <ion-button class="add-to-cart" color="color2" fill="outline" expand="block" (click)="cancelModal()">{{ 'filter.Cancel' | translate }}</ion-button>
+            </ion-col>
+
+            <!-- Filter Apply Button -->
+            <ion-col>
+                <ion-button class="add-to-cart" color="color1" fill="outline" expand="block" (click)="applyFilter()">{{ 'filter.Apply' | translate }}</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,47 @@
+<ion-app>
+  <ion-menu side="start" menuId="pages" type="overlay" contentId="mainContent" >
+
+    <!-- Header -->
+    <ion-header>
+      <ion-toolbar>
+        <ion-row>
+          <!-- App Icon/ User Profile Image -->
+          <ion-col size="12"><img src="assets/images/icon.png"></ion-col>
+
+
+          <!-- Name of the app/ user name -->
+         
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Content Options -->
+    <!-- Menus -->
+    <ion-content>
+      <ion-list class="ion-padding" lines="none">
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-icon size="small" slot="start" [name]="p.icon"></ion-icon>
+            <ion-label>
+              {{p.title | translate}}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item>
+            <ion-icon size="small" slot="start" name="options"></ion-icon>
+            <ion-label>{{ 'menu.language' | translate }}</ion-label>
+            <ion-select value=""  (ionChange)="languageChanged($event)" okText="{{ 'cart.okay' | translate }}" cancelText="{{ 'cart.Dismiss' | translate }}">
+              <ion-select-option  value="en">English</ion-select-option>
+              <ion-select-option  value="rem">عربي</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+       
+    </ion-content>
+   
+  </ion-menu>
+  
+  <ion-router-outlet id="mainContent"></ion-router-outlet>
+</ion-app>

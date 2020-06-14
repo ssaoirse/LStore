@@ -1,0 +1,68 @@
+<!--
+  - Deal Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side menu option -->
+    <ion-buttons slot="start">
+      <ion-menu-toggle menu="pages">
+        <ion-button color="white">
+          <ion-icon name="menu" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    <!-- Page title -->
+    <ion-title>{{'home.best_seller' | translate}}</ion-title>
+
+    <!-- Cart Button Option -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- Contents -->
+<ion-content id="deal">
+  <ion-refresher slot="fixed" 
+  (ionRefresh)="ionRefresh($event)" 
+  (ionPull)="ionPull($event)" 
+  (ionStart)="ionStart($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let item of (deals | async)" (click)="goToProductDetails(item)">
+
+    <!-- Any deal content image -->
+    <img [src]="item.default_image" />
+
+    <!-- Wish Button or Product Like/Dislike Button Option -->
+    <ion-fab vertical="top" horizontal="end">
+      <ion-fab-button>
+        
+        <ion-icon color="color1" name="heart-outline" *ngIf="item.isWishlist==0"></ion-icon>
+        <ion-icon color="color1" name="heart" *ngIf="item.isWishlist!=0"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <!-- Deal contents -->
+    <ion-card-header>
+      <ion-card-title class="ion-padding-bottom">{{item.name}}</ion-card-title>
+      <ion-card-subtitle class="ion-text-wrap">{{item.description}}</ion-card-subtitle> 
+      <ion-button color="color1" size="small" >{{'home.shop_now' | translate}}</ion-button>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

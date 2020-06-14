@@ -1,0 +1,52 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+	<ion-buttons slot="start">
+     <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Page title -->
+	 <ion-title>{{ 'address.title' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content  id="address" class="ion-padding">
+
+<ion-item>
+	<ion-button expand="block" fill="outline"  (click)="addAddress()">{{ 'address.add_new' | translate }}</ion-button>
+</ion-item>
+
+<div class="address" *ngIf="chkAddress"><h2>{{ 'address.no_address' | translate }}</h2></div>
+
+  <ion-card *ngFor="let item of rows">
+  <ion-card-header>
+    <ion-card-subtitle>{{item.shipping_mobile_number}}</ion-card-subtitle>
+    <ion-card-title>{{item.shipping_frist_name}} {{item.shipping_last_name}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{item.shipping_address}}, {{item.shipping_address_two}}, {{item.shipping_city}} ,{{item.shipping_state_name}}, {{item.shipping_country_name}}, {{item.shipping_zip}}
+	<br>
+	{{item.sp_delivery_instruction}}
+  </ion-card-content>
+   <ion-item>
+    <ion-button fill="outline" (click)="edit(item.id)">{{ 'address.update' | translate }}</ion-button>
+	
+	<ion-button *ngIf="!item.is_default" fill="outline" (click)="makeDefault(item.id)">{{ 'address.make_default' | translate }}</ion-button>
+	<ion-button *ngIf="item.is_default" fill="outline" >{{ 'address.default' | translate }}</ion-button>
+	<ion-button fill="outline" (click)="presentAlertConfirm(item.id)">{{ 'address.delete' | translate }}</ion-button>
+  </ion-item>
+</ion-card>
+</ion-content>

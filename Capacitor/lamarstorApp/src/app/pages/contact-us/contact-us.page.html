@@ -1,0 +1,70 @@
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+      <!-- Side Menu Option -->
+      <ion-buttons slot="start">
+          <ion-menu-toggle menu="pages">
+              <ion-button color="white">
+                  <ion-icon name="menu" slot="icon-only"></ion-icon>
+              </ion-button>
+          </ion-menu-toggle>
+      </ion-buttons>
+
+      <!-- Title of page -->
+      <ion-title>{{ 'menu.contact_us' | translate }}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="contact_us" fullscreen>
+  
+  <!-- <div class="section_one">
+    <h2>{{ 'menu.contact_us' | translate }}</h2>
+  </div> -->
+
+  <!-- SignUp Form -->
+  <div class="section_two ion-padding">
+    <form class="ion-padding">
+      <!-- Name -->
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="{{ 'contact_us.enter_name' | translate }}" name="name" [(ngModel)]="name"></ion-input>
+      </ion-item>
+
+      <!-- Email -->
+      <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="mail" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="email" placeholder="{{ 'contact_us.enter_mail' | translate }}" name="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <!-- Phone Number -->
+      <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="call" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="number" placeholder="{{ 'contact_us.enter_phone' | translate }}" name="phone"  [(ngModel)]="phone"></ion-input>
+      </ion-item>
+
+      <!-- Password -->
+      <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="create" color="color2"></ion-icon>
+        </ion-label>
+        <ion-textarea rows="3" cols="20" placeholder="{{ 'contact_us.enter_msg' | translate }}" name="message"  [(ngModel)]="message"></ion-textarea>
+      </ion-item>
+
+      <!-- SignUp Button -->
+      <div class="buttons ion-padding-top">
+        <ion-button expand="block" color="color1" (click)="sendMail()">
+          <ion-text><strong>Submit</strong></ion-text>
+        </ion-button>
+      </div>
+
+    </form>
+  </div>
+</ion-content>

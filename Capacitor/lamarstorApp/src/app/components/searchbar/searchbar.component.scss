@@ -1,0 +1,15 @@
+#searchbar {
+    ion-searchbar {
+        --background: var(--ion-color-white);
+        border: 1px solid var(--ion-color-medium);
+        border-radius: 25px !important;
+        
+    }
+    .searchbar-input.sc-ion-searchbar-md {
+        border: 0 !important;
+        box-shadow: none !important;
+        -webkit-box-shadow:none !important;
+        
+    }
+    
+}

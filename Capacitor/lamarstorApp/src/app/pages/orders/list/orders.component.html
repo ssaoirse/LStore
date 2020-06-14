@@ -1,0 +1,69 @@
+<!--
+  - My Orders Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Headder -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side menu option -->
+    <ion-buttons slot="start">
+      <ion-menu-toggle menu="pages">
+        <ion-button color="white">
+          <ion-icon name="menu" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    <!-- Page Title -->
+    <ion-title>{{ 'order.title1' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="orders" fullscreen>
+
+  <!-- Orders Options -->
+  <!-- Options are - Delivered, Processing, Cancelled  -->
+  <div class="ion-padding ion-text-center">
+    <ion-chip *ngFor="let headitem of options; let i = index" [ngClass]="{ionChip: headitem.isSelected}"
+      (click)="changeOption(headitem, i)">
+      <ion-label>{{ headitem.title | translate }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- List of orders -->
+  <ion-card *ngFor="let item of orders">
+    <ion-card-header>
+      <ion-row>
+
+        <!-- Order Id -->
+        <ion-col>
+          <ion-card-title>{{ 'order.title2' | translate }} {{item.order_number}}</ion-card-title>
+        </ion-col>
+
+        <!-- Order Date -->
+        <ion-col class="col-right">
+          <ion-text>{{item.created_date}}</ion-text>
+        </ion-col>
+      </ion-row>
+
+      <!-- Order Tracking Number -->
+      <ion-row>
+        <ion-col>{{ 'order.tracking_no' | translate }}: <span *ngIf="item.tracking_number">{{item.tracking_number}}</span> <span *ngIf="!item.tracking_number">{{ 'order.na' | translate }}</span></ion-col>
+      </ion-row>
+
+      <!-- Order Quantity & Price -->
+      <ion-row>
+        <ion-col>{{ 'order.quantity' | translate }}: {{item.total_quanity}}</ion-col>
+        <ion-col>{{ 'order.total_price' | translate }}: {{item.sign}}{{item.grand_total}}</ion-col>
+      </ion-row>
+
+      <ion-button color="color1" size="small" (click)="get_details(item.id)">{{ 'order.details' | translate }}</ion-button> <ion-button color="color1" size="small" (click)="track_id(item.id)">{{ 'order.track' | translate }}</ion-button> <ion-button *ngIf="item.order_status!='Cancelled'||item.order_status!='Delivered'" color="color2" size="small" (click)="cancel_order(item.id)">{{ 'order.cancel' | translate }}</ion-button>
+
+    </ion-card-header>
+  </ion-card>
+</ion-content>

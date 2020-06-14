@@ -1,0 +1,109 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themesbuckets@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   AppsPlaces
+-->
+
+<!-- Header -->
+<ion-header no-border>
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+	<ion-buttons slot="start">
+     <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Page title -->
+	 <ion-title>{{ 'order.view_details' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding">
+
+<ion-grid>
+	<ion-row>
+        <ion-col><h3><u>{{ 'order.order_detail' | translate }}</u></h3></ion-col>
+    </ion-row>
+   <ion-row>
+    <ion-col size="6"><b>{{ 'order.order_id' | translate }} :</b> </ion-col><ion-col size="6"> {{order_number}}</ion-col>
+    <ion-col size="6"><b>{{ 'order.transaction_id' | translate }} :</b> </ion-col><ion-col size="6"> {{txn_no}}</ion-col>
+    <ion-col size="6"><b>{{ 'order.order_status' | translate }} :</b></ion-col><ion-col size="6">  {{order_status}}</ion-col>
+	<ion-col size="6"><b>{{ 'order.payment_status' | translate }} :</b></ion-col><ion-col size="6">  {{payment_status}}</ion-col>
+    <ion-col size="6"><b>{{ 'order.date_add' | translate }} :</b> </ion-col><ion-col size="6"> <span class="aBn" data-term="goog_596525449" tabindex="0"><span class="aQJ">{{created_date | date: 'dd/MM/yyyy'}}</span></span></ion-col>
+    <ion-col size="6"><b>{{ 'order.payment_method' | translate }} :</b> </ion-col><ion-col size="6"> {{payment_method}}  </ion-col>
+	<ion-col size="6"><b>{{ 'order.email' | translate }} :</b> </ion-col><ion-col size="6"><a href="mailto:{{email}}" target="_blank">{{email}}</a></ion-col>
+	<ion-col size="6"><b>{{ 'order.mobile' | translate }} :</b> </ion-col><ion-col size="6">{{mobile_number}}</ion-col>
+	
+	<ion-col size="6" *ngIf="is_pickup_from_store==1"><b>{{ 'order.delivery_method' | translate }} :</b> </ion-col><ion-col *ngIf="is_pickup_from_store==1" size="6">{{ 'checkout.pick_from_store' | translate }}</ion-col>
+	
+	<ion-col size="6" *ngIf="is_pickup_from_store==0"><b>{{ 'order.delivery_method' | translate }} :</b> </ion-col><ion-col *ngIf="is_pickup_from_store==0" size="6">{{ 'checkout.free_ground_shipping' | translate }}</ion-col>
+</ion-row>
+	
+	<ion-row>
+	<ion-col>
+	<hr>
+	</ion-col>
+	</ion-row>
+	  
+	<ion-row *ngIf="is_pickup_from_store==0">
+	<ion-col><u><b>{{ 'order.billing_address' | translate }}</b></u></ion-col>
+	<ion-col><u><b>{{ 'order.shipping_address' | translate }}</b></u></ion-col>
+	</ion-row>
+	<ion-row *ngIf="is_pickup_from_store==0">
+	<ion-col>
+	{{name}}<br>{{address}}<br>{{city}}<br>{{zip}}<br>{{state}}<br>{{shipping_state}}<br>{{shipping_country}}	
+	</ion-col>
+	
+	<ion-col>
+	{{shipping_name}}<br>{{shipping_address}}<br>{{shipping_city}}<br>{{shipping_zip}}<br>{{shipping_state}}<br>{{shipping_country}}
+	</ion-col>
+	</ion-row>
+
+	<ion-row  *ngIf="is_pickup_from_store==1">
+		<ion-col size="6">{{ 'order.personal_details' | translate }} :</ion-col>		
+		<ion-col size="6">{{name}}<br>{{address}}<br>{{city}}<br>{{zip}}<br>{{state}}<br>{{shipping_state}}<br>{{shipping_country}}	</ion-col>		
+	</ion-row>
+
+	 </ion-grid>
+	  
+	  <ion-grid *ngFor="let item of order_results">
+		<ion-row>
+				<ion-col><b>{{ 'order.prodct' | translate }}</b></ion-col><ion-col *ngIf="item.name"> {{item.name}} </ion-col><ion-col *ngIf="!item.name">{{ 'order.na' | translate }}</ion-col>
+		</ion-row>
+		<ion-row>
+				<ion-col><b>{{ 'order.sku' | translate }}</b></ion-col> <ion-col *ngIf="item.sku"> {{item.sku}}   </ion-col> <ion-col *ngIf="!item.sku">{{ 'order.na' | translate }}</ion-col>
+		</ion-row>
+		<ion-row>
+				<ion-col><b>{{ 'order.color' | translate }}</b></ion-col><ion-col>{{item.color_name}}</ion-col>
+		</ion-row>
+		<ion-row>
+		<ion-col><b>{{ 'order.quantity' | translate }}</b></ion-col><ion-col>{{item.qty}}</ion-col>
+		</ion-row>
+		<ion-row>
+		<ion-col><b>{{ 'order.unit_price' | translate }}</b></ion-col><ion-col>{{currency_symble}}{{item.unit_price}}</ion-col>
+		</ion-row>
+		<ion-row>
+		<ion-col><b>{{ 'order.total' | translate }}</b></ion-col><ion-col>{{currency_symble}}{{item.price}}</ion-col>
+	</ion-row>
+	  </ion-grid>
+	  
+	  	  <ion-grid>
+		<ion-row>
+				<ion-col><b>{{ 'order.sub_total' | translate }}</b></ion-col><ion-col > {{currency_symble}}{{subtotal}} </ion-col>
+		</ion-row>
+		<ion-row>
+				<ion-col><b>{{ 'order.sale_tax' | translate }}</b></ion-col> <ion-col>{{currency_symble}} {{salestax}}   </ion-col>
+		</ion-row>
+		<ion-row>
+				<ion-col><b>{{ 'order.shipping_charge' | translate }}</b></ion-col><ion-col>{{currency_symble}}{{shipping}}</ion-col>
+		</ion-row>
+		<ion-row>
+		<ion-col><b>{{ 'order.discount' | translate }}</b></ion-col><ion-col>{{currency_symble}}{{discount}}</ion-col>
+		</ion-row>
+		<ion-row>
+		<ion-col><b>{{ 'order.total' | translate }}</b></ion-col><ion-col>{{currency_symble}}{{gtotal}}</ion-col>
+		</ion-row>
+	  </ion-grid>
+
+</ion-content>

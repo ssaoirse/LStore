@@ -1,0 +1,22 @@
+<!-- Categories -->
+<div id="categories">
+  <ion-item-divider color="white" class="ion-padding-top">
+    <ion-label color="dark" class="text-bold">{{'home.categories' | translate}}</ion-label>
+    <ion-button class="ion-margin-end" size="small" slot="end" color="color1" fill="clear" (click)="seeAllCat()" >{{'home.see_all' | translate}}</ion-button>
+  </ion-item-divider>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row>      
+      <ion-col size="6" *ngFor="let item of (categories | async); let i=index">
+        <!-- <ion-card class="ion-no-padding ion-no-margin" routerLink="/tabs/products/" routerDirection="root"> -->
+          <ion-card class="ion-no-padding ion-no-margin custom_card" (click)="goToProduct(item.id,item.subcategory)">
+          <img [src]="item.cat_image" />
+          <ion-card-header>
+            <ion-card-subtitle>{{item.category_name}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+<!-- End Categories -->

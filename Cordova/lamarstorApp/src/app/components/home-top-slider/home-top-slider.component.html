@@ -1,0 +1,9 @@
+<!-- Top Banner Slider -->
+<div id="top-slider" dir="ltr">
+  <ion-slides pager="true" [options]="slideOpts" class="ion-padding-top">
+    <ion-slide *ngFor="let item of bannerList">
+      <img src="{{item.banner_image}}" />
+    </ion-slide>
+   
+  </ion-slides>
+</div>
